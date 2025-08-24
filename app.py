@@ -268,54 +268,53 @@ with ab_col2:
 # =========================
 # Skills Section
 # =========================
+# =========================
+# Skills Section
+# =========================
 st.markdown("## Skills & Expertise")
-st.caption("Animated proficiency bars + radar overview")
+st.caption("Categorized skills with icons instead of charts")
 
-skills_df = pd.DataFrame({
-    "Technology": ["Python", "Java","Pandas", "NumPy", "Scikit-learn", "CNN", "TensorFlow", "PyTorch", "SQL", "Streamlit", "Tableau", "PowerBI", "Git"],
-    "Proficiency": [95, 95, 92, 90, 88, 90, 80, 70, 85, 90, 84, 85, 78]
-})
+# Define skill categories
+skill_categories = {
+    "Programming": [
+        (" Python", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"),
+        (" Java", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"),
+        (" SQL", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"),
+        (" Git", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"),
+    ],
+    "Data Science": [
+        ("Pandas", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"),
+        ("NumPy", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"),
+        ("Scikit-learn", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg"),
+    ],
+    "Deep Learning": [
+        ("TensorFlow", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"),
+        ("PyTorch", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"),
+        ("CNN", "https://cdn-icons-png.flaticon.com/512/3522/3522092.png"),
+    ],
+    "Visualization": [
+        ("Streamlit", "https://streamlit.io/images/brand/streamlit-mark-color.png"),
+        ("Tableau", "https://cdn.worldvectorlogo.com/logos/tableau-software.svg"),
+        ("PowerBI", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powerbi/powerbi-original.svg"),
+    ]
+}
 
-# Bars (left) + Radar (right)
-scol1, scol2 = st.columns([1.1, 1])
+# Layout: 2 columns
+col1, col2 = st.columns(2)
 
-with scol1:
-    c1, c2 = st.columns(2, gap="large")
-    for i, row in skills_df.iterrows():
-        (c1 if i % 2 == 0 else c2).markdown(
-            f"""
-            <div class="card card-hover">
-              <div class="skill-wrap">
-                <div class="skill-name">{row['Technology']}</div>
-                <div style="color:var(--muted)">{row['Proficiency']}%</div>
-              </div>
-              <div class="skill-bar"><span style="width:{row['Proficiency']}%"></span></div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-with scol2:
-    radar_df = pd.DataFrame({
-        "skill": ["ML", "DL", "CV", "NLP", "Viz", "MLOps"],
-        "score": [88, 78, 80, 75, 85, 70]
-    })
-    fig_radar = go.Figure(data=go.Scatterpolar(
-        r=radar_df["score"].tolist() + [radar_df["score"].iloc[0]],
-        theta=radar_df["skill"].tolist() + [radar_df["skill"].iloc[0]],
-        fill='toself'
-    ))
-    fig_radar.update_layout(
-        margin=dict(l=10,r=10,t=20,b=10),
-        polar=dict(
-            radialaxis=dict(visible=True, range=[0,100], gridcolor="rgba(255,255,255,0.15)", tickfont=dict(color="#9CA3AF")),
-            angularaxis=dict(gridcolor="rgba(255,255,255,0.15)", tickfont=dict(color="#9CA3AF"))
-        ),
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        font=dict(color="#E5E7EB")
-    )
-    st.plotly_chart(fig_radar, use_container_width=True)
+for i, (category, skills) in enumerate(skill_categories.items()):
+    with (col1 if i % 2 == 0 else col2):
+        st.markdown(f"### {category}")
+        for name, icon_url in skills:
+            st.markdown(
+                f"""
+                <div style="display:flex; align-items:center; margin-bottom:10px;" class="card card-hover">
+                    <img src="{icon_url}" alt="{name}" width="28" style="margin-right:10px;">
+                    <span style="font-size:16px;">{name}</span>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
 st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
 
@@ -325,6 +324,7 @@ st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
 st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
 st.markdown("## Projects")
 st.caption("Filter by tag and explore interactive demos")
+
 
 PROJECTS = [
     {
@@ -367,6 +367,7 @@ PROJECTS = [
         "repo": "https://github.com/anshkedia-04/computer_vision_projects/tree/main/VolumeControler",
         "demo": None
     }
+    
 ]
 
 # Tag filter
@@ -443,24 +444,72 @@ st.markdown("## Highlights")
 st.caption("Education, internships, and certifications")
 
 resume_items = [
-    {"when":"2022 — Present", "title":"B.Tech (Final Year) — Computer Science and Engineering", "where":"Parul University", "detail":"Coursework: ML, DL, CV, NLP, DSA, DBMS."},
-    {"when":"Summer 2025", "title":"Data Science Summer Intern", "where":"Celebal Technologies Pvt. Ltd.", "detail":"Shipped ML features with A/B tested improvements."},
-    {"when":"2024", "title":"Accenture Certification", "where":"Data Analytics and Visualization Job Simulation", "detail":"Gained hands-on experience in data cleaning, visualization, and presenting insights using real-world business datasets."},
-    {"when":"2024", "title":"Cisco Certification", "where":"Introduction to Data Science", "detail":"Learned fundamental concepts of data science including data wrangling, exploratory analysis, and basic machine learning techniques."},
-    {"when":"2024", "title":"Cisco Certification", "where":"Python Essentials", "detail":"Developed strong foundations in Python programming, including data structures, functions, and scripting for problem-solving."},
-    {"when":"2024", "title":"Microsoft Certification", "where":"Ignite Edition Challenge", "detail":"Explored cloud computing concepts, AI integration, and Microsoft tools for solving modern business challenges."}
+    {
+        "when": "2022 — Present",
+        "title": "B.Tech (Final Year) — Computer Science and Engineering",
+        "where": "Parul University",
+        "detail": "Coursework: ML, DL, CV, NLP, DSA, DBMS.",
+        "logo": "logos/parul.png"
+    },
+    {
+        "when": "Summer 2025",
+        "title": "Data Science Summer Intern",
+        "where": "Celebal Technologies Pvt. Ltd.",
+        "detail": "Shipped ML features with A/B tested improvements.",
+        "logo": "logos/celebal.png"
+    },
+    {
+        "when": "2024",
+        "title": "Accenture Certification",
+        "where": "Data Analytics and Visualization Job Simulation",
+        "detail": "Hands-on experience in data cleaning, visualization, and presenting insights.",
+        "logo": "logos/accenture.png"
+    },
+    {
+        "when": "2024",
+        "title": "Cisco Certification",
+        "where": "Python Essentials",
+        "detail": "Built a strong foundation in Python programming, data structures, and scripting.",
+        "logo": "logos/cisco.png"
+    },
+    {
+        "when": "2024",
+        "title": "Cisco Certification",
+        "where": "Introduction to Data Science",
+        "detail": "Gained foundational knowledge in data science concepts, tools, and techniques.",
+        "logo": "logos/cisco.png"
+    },
+    {
+        "when": "2024",
+        "title": "Microsoft Certification",
+        "where": "Ignite Edition Challenge",
+        "detail": "Explored cloud computing concepts, AI integration, and Microsoft tools.",
+        "logo": "logos/microsoft.png"
+    },
 ]
 
 cL, cR = st.columns([1.3, 1])
 with cL:
-    st.markdown('<div class="card timeline">', unsafe_allow_html=True)
+    st.markdown('<div class="timeline">', unsafe_allow_html=True)
     for it in resume_items:
+        # Convert logo to base64 so it renders inline
+        try:
+            with open(it["logo"], "rb") as f:
+                logo_b64 = base64.b64encode(f.read()).decode()
+                logo_html = f'<img src="data:image/png;base64,{logo_b64}" style="width:40px;height:40px;object-fit:contain;border-radius:8px;border:1px solid rgba(255,255,255,0.2);" />'
+        except:
+            logo_html = '<div style="width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:gray;">N/A</div>'
+
         st.markdown(
             f"""
-            <div class="timeline-item card-hover" style="padding:.7rem 1rem; border-radius:14px;">
-              <div style="color:#86efac; font-weight:700; font-size:.9rem;">{it['when']}</div>
-              <div style="font-weight:700; margin-top:.15rem;">{it['title']} — <span style="color:var(--muted)">{it['where']}</span></div>
-              <div style="color:var(--muted); margin-top:.25rem;">{it['detail']}</div>
+            <div class="timeline-item card-hover" style="display:flex; gap:1rem; align-items:center; padding:.9rem 1rem; border-radius:16px;">
+              {logo_html}
+              <div>
+                <div style="color:#86efac; font-weight:700; font-size:.85rem;">{it['when']}</div>
+                <div style="font-weight:700; margin-top:.15rem;">{it['title']}</div>
+                <div style="color:var(--muted); font-size:.9rem;">{it['where']}</div>
+                <div style="color:var(--muted); margin-top:.25rem; font-size:.9rem;">{it['detail']}</div>
+              </div>
             </div>
             """,
             unsafe_allow_html=True
@@ -473,14 +522,63 @@ with cR:
         pdf_bytes = pdf_file.read()
 
     st.markdown(
-        '<div class="card"><h3>Resume</h3><p style="color:var(--muted)">Download a concise 1-page resume.</p>',
+        """
+        <style>
+        .resume-card {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease-in-out;
+        }
+        .resume-card:hover {
+            transform: scale(1.03);
+        }
+        .resume-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #facc15; /* gold */
+        }
+        .resume-desc {
+            font-size: 16px;
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+        div.stDownloadButton > button {
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            color: white;
+            border-radius: 12px;
+            padding: 10px 18px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-weight: 600;
+        }
+        div.stDownloadButton > button:hover {
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 15px rgba(0,0,0,0.3);
+        }
+        </style>
+        """,
         unsafe_allow_html=True
     )
+
+    st.markdown(
+        """
+        <div class="resume-card">
+            <h3 class="resume-title">📄 My Resume</h3>
+            <p class="resume-desc">Download a concise, elegant 1-page resume to know more about my journey.</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     st.download_button("⬇️ Download Resume", data=pdf_bytes, file_name="Resume.pdf", mime="application/pdf")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
-
 
 
 # =========================
