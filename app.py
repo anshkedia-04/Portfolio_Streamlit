@@ -290,12 +290,19 @@ skill_categories = {
     "Deep Learning": [
         ("TensorFlow", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"),
         ("PyTorch", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"),
-        ("CNN", "https://cdn-icons-png.flaticon.com/512/3522/3522092.png"),
+        ("CNN", "https://imgs.search.brave.com/fzKrZ13dBAhof8JjX-t39wbArWfq_8znKIhuG7Gp6go/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/aWNvbnNjb3V0LmNv/bS9pY29uL3ByZW1p/dW0vcG5nLTI1Ni10/aHVtYi9uZXVyYWwt/bmV0d29yay1sb2dv/LWljb24tc3ZnLXBu/Zy1kb3dubG9hZC0x/NTM1MTMwLnBuZz9m/PXdlYnAmdz0xMjg"),
+    ],
+    "Computer Vision": [
+        ("OpenCV", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"),
+    ],
+    "Natural Language Processing": [
+        ("LangChain", "https://imgs.search.brave.com/IgPYZP9QFG0iiIPnFZzQuNSHM7zTYelvbt3DfhT2eYA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZWdp/c3RyeS5ucG1taXJy/b3IuY29tL0Bsb2Jl/aHViL2ljb25zLXN0/YXRpYy1wbmcvbGF0/ZXN0L2ZpbGVzL2Rh/cmsvbGFuZ3NtaXRo/LnBuZw"),
+
     ],
     "Visualization": [
         ("Streamlit", "https://streamlit.io/images/brand/streamlit-mark-color.png"),
         ("Tableau", "https://cdn.worldvectorlogo.com/logos/tableau-software.svg"),
-        ("PowerBI", "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powerbi/powerbi-original.svg"),
+        ("PowerBI", "https://imgs.search.brave.com/p94jLqUg8ptH4YJkAAkACVma2gKzLJBw_JK-1h3oZzc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly8xMDAw/bG9nb3MubmV0L3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIyLzA4/L01pY3Jvc29mdC1Q/b3dlci1CSS1Mb2dv/LTUwMHgyODEucG5n"),
     ]
 }
 
@@ -330,7 +337,7 @@ PROJECTS = [
     {
         "title": "🧑🏻‍💻 Facemask 360",
         "desc": "A comprehensive solution for marking attendance using facial recognition.",
-        "tags": ["Classification", "Facenet", "Scikit-learn", "OpenCV", "Streamlit"],
+        "tags": ["Classification", "Facenet", "OpenCV", "Streamlit"],
         "img": "https://i.pinimg.com/1200x/d9/0d/06/d90d064ba19dfb99b8f49a33bf52b443.jpg",
         "repo": "https://github.com/anshkedia-04/Smart_Attend",
         "demo": None
@@ -635,3 +642,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
