@@ -205,7 +205,7 @@ with colH2:
     <div class="card card-hover" style="text-align:center;">
       <img src="data:image/png;base64,{img_base64}" 
            style="width:50%; border-radius:16px; border:1px solid #ccc;" />
-      <div style="margin-top:.6rem; color: gray;">• Open to internships and full-time roles</div>
+      <div style="margin-top:.6rem; color: gray;">Open to internships and full-time roles</div>
     </div>
     """,
     unsafe_allow_html=True,
