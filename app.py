@@ -186,8 +186,8 @@ img_base64 = get_base64_image("2.jpg")
 colH1, colH2 = st.columns([1.2, 1], gap="large")
 with colH1:
     st.markdown('<span class="badge">👨‍🔬 Final-Year • Data Science</span>', unsafe_allow_html=True)
-    st.markdown('<div class="big-title">Hi, I\'m <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Ansh Kedia</span></div>', unsafe_allow_html=True)
-    st.markdown("Passionate and results-driven 4th Year B.Tech CSE student (Graduating 2026) with a strong foundation in Data Structures and Algorithms, Object Oriented Programming, Java and Python. Actively building projects in Machine Learning, Computer Vision, Deep Learning, GenAI and Full-Stack Development. Quick learner with hands-on coding practice on platforms like LeetCode.", unsafe_allow_html=True)
+    st.markdown('<div class="big-title">Hi 👋, I\'m <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Ansh Kedia</span></div>', unsafe_allow_html=True)
+    st.markdown("A Data Science & AI Enthusiast turning ideas into intelligent solutions. I build real-time AI systems, deep learning models, and interactive web experiences that solve real-world problems. From gesture-controlled apps to emotion detection and sign language recognition, I love bringing innovation and creativity together with code. Explore my work and see how I make technology smart, interactive, and fun.", unsafe_allow_html=True)
     st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
     st.markdown(
         """<div class="subhead">
@@ -205,7 +205,7 @@ with colH2:
     <div class="card card-hover" style="text-align:center;">
       <img src="data:image/png;base64,{img_base64}" 
            style="width:50%; border-radius:16px; border:1px solid #ccc;" />
-      <div style="margin-top:.6rem; color: gray;">Based in India🌍 • Open to internships and full-time roles</div>
+      <div style="margin-top:.6rem; color: gray;">• Open to internships and full-time roles</div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -230,8 +230,8 @@ with ab_col1:
         <div class="card card-hover">
           <h3>Quick Peek</h3>
           <p style="color:var(--muted)">
-          Final-year Data Science student with a strong foundation in machine learning, deep learning, and data visualization. 
-          I enjoy building end-to-end ML pipelines — from clean data to elegant, explainable products.
+          Final-year Data Science student with a solid foundation in Machine Learning, Deep Learning, and Data Visualization. 
+          I love building end-to-end ML solutions — transforming raw data into clean, insightful, and explainable products.
           </p>
           <div class="tags">
             <span class="tag">Python</span>
@@ -465,6 +465,21 @@ resume_items = [
         "detail": "Shipped ML features with A/B tested improvements.",
         "logo": "logos/celebal.png"
     },
+    {
+        "when": "Jan 2025 - Apr 2025",
+        "title": "Machine Learning Intern",
+        "where": "Unified Mentor Pvt. Ltd.",
+        "detail": "Gained hands-on experience with Python, Scikit-learn and Tensorflow",
+        "logo": "logos/unified.png"
+    },
+    {
+        "when": "Summer 2024",
+        "title": "Data Science Intern",
+        "where": "SkillForge E-Learning Solutions Pvt. Ltd.",
+        "detail": "Hands-on experience in python, analytics and machine learning",
+        "logo": "logos/skillforge.png"
+    },
+
     {
         "when": "2024",
         "title": "Accenture Certification",
