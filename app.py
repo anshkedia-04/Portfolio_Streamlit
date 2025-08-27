@@ -343,12 +343,12 @@ PROJECTS = [
         "demo": None
     },
     {
-        "title": "🏡 House Price Prediction",
+        "title": "🏡 BrickWise: Bengaluru Price Prediction",
         "desc": "Regression pipeline with cross-validation, feature selection, and hyperparameter tuning.",
         "tags": ["ML", "Regression", "EDA","Streamlit"],
         "img": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1600&auto=format&fit=crop",
         "repo": "https://github.com/anshkedia-04/House-Price-Prediction-",
-        "demo": "https://csiassignment7-3mwhmzgnnqyr55wv8caelj.streamlit.app/"
+        "demo": "https://bengaluru-housepriceprediction.streamlit.app/"
     },
     {
         "title": "🤖 BrewBot",
@@ -359,7 +359,7 @@ PROJECTS = [
         "demo": None
     },
     {
-        "title": "🖱️ Mouse Controller",
+        "title": "🖱️ VisionMouse: Mouse Controller",
         "desc": "A deep learning project that uses computer vision to control the mouse cursor with hand movements.",
         "tags": ["MediaPipe", "OpenCV", "Streamlit"],
         "img": "https://i.pinimg.com/736x/89/54/66/8954661b52c02049504910323fa29989.jpg",
@@ -367,11 +367,11 @@ PROJECTS = [
         "demo": None
     },
     {
-        "title": "🔊 Volume Controller",
+        "title": "🔊 AirTune: Volume Controller",
         "desc": "A deep learning project that uses computer vision to control the volume of the system with simple hand gestures.",
         "tags": ["MediaPipe", "OpenCV", "Streamlit"],
         "img": "https://i.pinimg.com/736x/8a/31/39/8a3139faa5cc210fa7a749a812c31798.jpg",
-        "repo": "https://github.com/anshkedia-04/computer_vision_projects/tree/main/VolumeControler",
+        "repo": "https://github.com/anshkedia-04/AirTune",
         "demo": None
     }
     
