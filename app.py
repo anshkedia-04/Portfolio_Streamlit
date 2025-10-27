@@ -335,6 +335,14 @@ st.caption("Filter by tag and explore interactive demos")
 
 PROJECTS = [
     {
+        "title": "VoyageAI: Travel Planner",
+        "desc": "An AI-powered travel planner that generates personalized itineraries based on user preferences.",
+        "tags": ["FastAPI", "Langchain", "Groq", "Streamlit"],
+        "img": "Voyage.png",
+        "repo": "https://github.com/anshkedia-04/Smart_Attend",
+        "demo": None
+    },
+    {
         "title": "🧑🏻‍💻 Facemask 360",
         "desc": "A comprehensive solution for marking attendance using facial recognition.",
         "tags": ["Classification", "Facenet", "OpenCV", "Streamlit"],
