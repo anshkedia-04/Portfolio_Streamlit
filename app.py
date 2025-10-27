@@ -338,7 +338,7 @@ PROJECTS = [
         "title": "VoyageAI: Travel Planner",
         "desc": "An AI-powered travel planner that generates personalized itineraries based on user preferences.",
         "tags": ["FastAPI", "Langchain", "Groq", "Streamlit"],
-        "img": "Voyage.png",
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/Voyage.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/Smart_Attend",
         "demo": None
     },
@@ -346,7 +346,7 @@ PROJECTS = [
         "title": "🧑🏻‍💻 Facemask 360",
         "desc": "A comprehensive solution for marking attendance using facial recognition.",
         "tags": ["Classification", "Facenet", "OpenCV", "Streamlit"],
-        "img": "https://i.pinimg.com/1200x/d9/0d/06/d90d064ba19dfb99b8f49a33bf52b443.jpg",
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/FaceMask.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/Smart_Attend",
         "demo": None
     },
@@ -354,7 +354,7 @@ PROJECTS = [
         "title": "🏡 BrickWise: Bengaluru Price Prediction",
         "desc": "Regression pipeline with cross-validation, feature selection, and hyperparameter tuning.",
         "tags": ["ML", "Regression", "EDA","Streamlit"],
-        "img": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1600&auto=format&fit=crop",
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/Brickwise.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/House-Price-Prediction-",
         "demo": "https://bengaluru-housepriceprediction.streamlit.app/"
     },
@@ -362,7 +362,7 @@ PROJECTS = [
         "title": "🤖 BrewBot",
         "desc": "Cafe FAQ Chatbot is an intelligent, open-source chatbot designed specifically for newly launched or small cafés that want a cost-effective customer support solution.",
         "tags": ["Langchain","HuggingFace","Streamlit"],
-        "img": "https://i.pinimg.com/736x/a4/40/c1/a440c171389639c89535247065f16809.jpg",
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/BrewBot.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/BrewBot",
         "demo": None
     },
@@ -370,7 +370,7 @@ PROJECTS = [
         "title": "🖱️ VisionMouse: Mouse Controller",
         "desc": "A deep learning project that uses computer vision to control the mouse cursor with hand movements.",
         "tags": ["MediaPipe", "OpenCV", "Streamlit"],
-        "img": "https://i.pinimg.com/736x/89/54/66/8954661b52c02049504910323fa29989.jpg",
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/VisionMouse.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/Gesture_Mouse_Control",
         "demo": None
     },
@@ -378,7 +378,7 @@ PROJECTS = [
         "title": "🔊 AirTune: Volume Controller",
         "desc": "A deep learning project that uses computer vision to control the volume of the system with simple hand gestures.",
         "tags": ["MediaPipe", "OpenCV", "Streamlit"],
-        "img": "https://i.pinimg.com/736x/8a/31/39/8a3139faa5cc210fa7a749a812c31798.jpg",
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/AirTune.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/AirTune",
         "demo": None
     }
