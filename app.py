@@ -15,6 +15,8 @@ import base64
 from datetime import datetime
 import os
 
+import streamlit as st
+import base64
 
 # =========================
 # Page Config
@@ -27,7 +29,7 @@ st.set_page_config(
 )
 
 # =========================
-# Custom CSS (theme + components)
+# Custom CSS
 # =========================
 CUSTOM_CSS = """
 <style>
@@ -37,116 +39,61 @@ CUSTOM_CSS = """
   --card-border: rgba(255,255,255,0.12);
   --text: #E5E7EB;
   --muted: #9CA3AF;
-  --brand: #34D399; /* teal-400/emerald */
-  --brand-2: #60A5FA; /* blue-400 */
+  --brand: #34D399;
+  --brand-2: #60A5FA;
   --shadow: 0 20px 60px rgba(0,0,0,0.35);
 }
 
-/* Make page edge-to-edge and set gradient background */
 .stApp {
   background: radial-gradient(1200px 600px at 10% -10%, rgba(52,211,153,0.2), transparent 40%),
               radial-gradient(1200px 600px at 110% 10%, rgba(96,165,250,0.14), transparent 40%),
               linear-gradient(180deg, #0b1020 0%, #0a0f1b 100%);
   color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
 }
 
 .block-container {padding-top: 2rem;}
-
-/* Headings */
 h1, h2, h3 { letter-spacing: -0.02em; }
-.big-title {
-  font-weight: 900;
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  line-height: 1.05;
-}
+.big-title { font-weight: 900; font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.05; }
 .subhead { color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.25rem); }
 
-/* Glass Card */
+/* Cards */
 .card {
   background: var(--card);
   border: 1px solid var(--card-border);
   border-radius: 20px;
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   padding: 1.2rem 1.3rem;
 }
-
-.card-hover { transition: transform .25s ease, border-color .25s ease, background .25s ease; }
-.card-hover:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.08); }
-
-/* Hero badge */
-.badge {
-  display: inline-flex; align-items: center; gap:.5rem;
-  padding: .4rem .8rem; border-radius: 999px;
-  background: rgba(52,211,153,0.15); color: #86efac; border: 1px solid rgba(52,211,153,0.35);
-  font-weight: 600; font-size: .9rem;
-}
+.card-hover:hover { transform: translateY(-4px); background: rgba(255,255,255,0.08); }
 
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; gap: .6rem;
-  padding: .75rem 1.05rem; border-radius: 14px;
+  padding: .7rem 1rem; border-radius: 14px;
   font-weight: 600; text-decoration: none !important;
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
-  border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
+  border: 1px solid var(--card-border); box-shadow: var(--shadow);
 }
-.btn:active { transform: translateY(1px) scale(0.98); }
 .btn-primary { background: linear-gradient(90deg, var(--brand), var(--brand-2)); color: #0a0f1b; border: none; }
 .btn-ghost { background: var(--card); color: var(--text); }
 .btn-ghost:hover { background: rgba(255,255,255,0.09); }
 
-/* Divider */
 .hr { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); margin: 1.5rem 0; border: 0; }
 
-/* Skill bar */
-.skill-wrap { display:flex; align-items:center; justify-content:space-between; margin-bottom:.4rem; }
-.skill-name { font-weight: 600; }
-.skill-bar { width:100%; height:10px; background:rgba(255,255,255,0.08); border-radius:999px; overflow:hidden; }
-.skill-bar > span { display:block; height:100%; background: linear-gradient(90deg, var(--brand), var(--brand-2)); }
-
-/* Tags */
 .tags { display:flex; gap:.5rem; flex-wrap:wrap; }
 .tag {
   font-size:.8rem; padding:.35rem .6rem; border-radius:999px;
   background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
 }
 
-/* Project grid images */
-.project-cover {
-  width:100%; height:220px; object-fit:cover; border-radius:14px; border:1px solid var(--card-border);
-}
-
-/* Timeline */
-.timeline { position: relative; margin-left: .75rem; padding-left: 1.25rem; }
-.timeline::before {
-  content: ""; position:absolute; left:0; top:.25rem; bottom:0; width:2px; background: rgba(255,255,255,0.18); border-radius:2px;
-}
-.timeline-item { position: relative; margin-bottom:1rem; }
-.timeline-item::before {
-  content:""; position:absolute; left:-9px; top:6px; width:12px; height:12px; border-radius:50%;
-  background: linear-gradient(90deg, var(--brand), var(--brand-2)); box-shadow: 0 0 0 4px rgba(255,255,255,0.06);
-}
-
-/* Footer */
-.footer { color: var(--muted); }
-
-/* Typing cursor */
-.cursor {
-  display:inline-block; width:1ch; animation: blink 1s steps(1,end) infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
-
-/* Hide default Streamlit artifacts */
 [data-testid="stDecoration"], footer, header { display: none !important; }
 </style>
 """
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
 # =========================
-# Typing Effect (JS injected)
+# Typing Effect (JS)
 # =========================
 TYPING_HTML = """
 <div id="typing" class="subhead"></div>
@@ -173,56 +120,72 @@ setTimeout(loop, 400);
 """
 
 # =========================
-# Header / Hero
+# Helper: Image Loader
 # =========================
-import base64
-
 def get_base64_image(image_file):
-    with open(image_file, "rb") as f:
-        return base64.b64encode(f.read()).decode()
+    try:
+        with open(image_file, "rb") as f:
+            return base64.b64encode(f.read()).decode()
+    except FileNotFoundError:
+        return ""
 
-img_base64 = get_base64_image("2.jpg")
+# =========================
+# Hero Section
+# =========================
+import streamlit as st
+import streamlit.components.v1 as components
 
-colH1, colH2 = st.columns([1.2, 1], gap="large")
-with colH1:
-    st.markdown('<span class="badge">👨‍🔬 Final-Year • Data Science</span>', unsafe_allow_html=True)
-    st.markdown('<div class="big-title">Hi 👋, I\'m <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Ansh Kedia</span></div>', unsafe_allow_html=True)
-    st.markdown("A Data Science & AI Enthusiast turning ideas into intelligent solutions. I build real-time AI systems, deep learning models, and interactive web experiences that solve real-world problems. From gesture-controlled apps to emotion detection and sign language recognition, I love bringing innovation and creativity together with code. Explore my work and see how I make technology smart, interactive, and fun.", unsafe_allow_html=True)
-    st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
+# Hero Section
+col1, col2 = st.columns([1.2, 1], gap="large")
+with col1:
+    st.markdown('<span class="badge">👨‍🔬 Data Science • AI Enthusiast</span>', unsafe_allow_html=True)
     st.markdown(
-        """<div class="subhead">
-        I turn data into products and decisions—across ML, CV, and NLP. I love rapid prototyping,
-        thoughtful UX, and measurable impact.
-        </div>""",
+        '<div class="big-title">Hi 👋, I\'m <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; color:transparent;">Ansh Kedia</span></div>',
+        unsafe_allow_html=True
+    )
+
+    # ✅ FIXED TYPING EFFECT — runs JS safely
+    components.html(
+        """
+        <div id="typing" style="color:#9CA3AF; font-size:1.25rem; margin-top:.3rem;"></div>
+        <script>
+        const roles = ["Data Scientist", "ML Engineer", "Computer Vision", "NLP & RAG", "Analytics & Dashboards"];
+        const el = document.getElementById('typing');
+        let i = 0, j = 0, deleting = false, delay = 80, pause = 800;
+
+        function loop(){
+          const word = roles[i % roles.length];
+          if(!deleting){
+            el.innerHTML = word.substring(0,j+1) + '<span style="opacity:.5">▮</span>';
+            j++;
+            if(j === word.length){ deleting = true; setTimeout(loop, pause); return; }
+          } else {
+            el.innerHTML = word.substring(0,j-1) + '<span style="opacity:.5">▮</span>';
+            j--;
+            if(j === 0){ deleting = false; i++; }
+          }
+          setTimeout(loop, deleting ? delay/2 : delay);
+        }
+        setTimeout(loop, 500);
+        </script>
+        """,
+        height=60,
+    )
+
+    st.markdown(
+        """
+        <div class="subhead" style="margin-top: 1rem;">
+        I build intelligent, data-driven systems combining <b>Machine Learning</b>, <b>Computer Vision</b>, and <b>Natural Language Processing</b>.
+        My goal is to turn raw data into <b>insights, automation, and real-world impact</b>.
+        </div>
+        """,
         unsafe_allow_html=True,
     )
-    # cta1, cta2, cta3 = st.columns([.18,.18,.64])
-    # with cta1: st.markdown('<a class="btn btn-primary" href="#projects">View Projects</a>', unsafe_allow_html=True)
-    # with cta2: st.markdown('<a class="btn btn-ghost" href="#contact">Contact</a>', unsafe_allow_html=True)
-with colH2:
-    st.markdown(
-    f"""
-    <div class="card card-hover" style="text-align:center;">
-      <img src="data:image/png;base64,{img_base64}" 
-           style="width:50%; border-radius:16px; border:1px solid #ccc;" />
-      <div style="margin-top:.6rem; color: gray;">Open to internships and full-time roles</div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
 
-st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
 
 # =========================
-# About + Quick facts
+# About Section
 # =========================
-a1, a2, a3, a4 = st.columns(4)
-a1.metric("ML Projects", "12")
-a2.metric("Dashboards", "4")
-a3.metric("CV/NLP Models", "6")
-a4.metric("Hackathons", "5")
-
-st.write("")
 ab_col1, ab_col2 = st.columns([1.4, 1])
 with ab_col1:
     st.markdown(
@@ -230,8 +193,8 @@ with ab_col1:
         <div class="card card-hover">
           <h3>Quick Peek</h3>
           <p style="color:var(--muted)">
-          Final-year Data Science student with a solid foundation in Machine Learning, Deep Learning, and Data Visualization. 
-          I love building end-to-end ML solutions — transforming raw data into clean, insightful, and explainable products.
+          Final-year Data Science student passionate about building intelligent systems that bridge the gap between data and decision-making.
+          Experienced in designing and deploying AI solutions with a focus on performance and interpretability.
           </p>
           <div class="tags">
             <span class="tag">Python</span>
@@ -244,13 +207,15 @@ with ab_col1:
             <span class="tag">Streamlit</span>
           </div>
         </div>
-        """, unsafe_allow_html=True
+        """,
+        unsafe_allow_html=True,
     )
+
 with ab_col2:
     st.markdown(
         """
         <div class="card card-hover">
-          <h3>Contact</h3>
+          <h3>Connect Instantly</h3>
           <div style="line-height:1.9;">
             <strong>Email:</strong> anshkedia.04@gmail.com<br>
             <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ansh-kedia-249843266/" target="_blank">linkedin.com/in/anshkedia</a><br>
@@ -265,14 +230,14 @@ with ab_col2:
         unsafe_allow_html=True,
     )
 
-# =========================
-# Skills Section
-# =========================
+st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
+
+
 # =========================
 # Skills Section
 # =========================
 st.markdown("## Skills & Expertise")
-st.caption("Categorized skills with icons instead of charts")
+st.caption("A glance at my technical stack.")
 
 # Define skill categories
 skill_categories = {
@@ -297,10 +262,12 @@ skill_categories = {
     ],
     "Natural Language Processing": [
         ("LangChain", "https://imgs.search.brave.com/IgPYZP9QFG0iiIPnFZzQuNSHM7zTYelvbt3DfhT2eYA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZWdp/c3RyeS5ucG1taXJy/b3IuY29tL0Bsb2Jl/aHViL2ljb25zLXN0/YXRpYy1wbmcvbGF0/ZXN0L2ZpbGVzL2Rh/cmsvbGFuZ3NtaXRo/LnBuZw"),
-
+        ("LangGraph", "https://imgs.search.brave.com/IgPYZP9QFG0iiIPnFZzQuNSHM7zTYelvbt3DfhT2eYA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZWdp/c3RyeS5ucG1taXJy/b3IuY29tL0Bsb2Jl/aHViL2ljb25zLXN0/YXRpYy1wbmcvbGF0/ZXN0L2ZpbGVzL2Rh/cmsvbGFuZ3NtaXRo/LnBuZw"),
+        ("Hugging Face", "https://huggingface.co/front/assets/huggingface_logo-noborder.svg"),
     ],
     "Visualization": [
         ("Streamlit", "https://streamlit.io/images/brand/streamlit-mark-color.png"),
+        ("Plotly", "https://images.plot.ly/logo/plotly-logo-color.png"),
         ("Tableau", "https://cdn.worldvectorlogo.com/logos/tableau-software.svg"),
         ("PowerBI", "https://imgs.search.brave.com/p94jLqUg8ptH4YJkAAkACVma2gKzLJBw_JK-1h3oZzc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly8xMDAw/bG9nb3MubmV0L3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIyLzA4/L01pY3Jvc29mdC1Q/b3dlci1CSS1Mb2dv/LTUwMHgyODEucG5n"),
     ]
@@ -313,10 +280,12 @@ for i, (category, skills) in enumerate(skill_categories.items()):
     with (col1 if i % 2 == 0 else col2):
         st.markdown(f"### {category}")
         for name, icon_url in skills:
+            # Use an external icon if available, otherwise use a placeholder with the first letter
+            icon_html = f'<img src="{icon_url}" alt="{name}" width="28" style="margin-right:10px;">' if "http" in icon_url else f'<div style="width:28px;height:28px;border-radius:50%;background:var(--brand);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.8rem;margin-right:10px;">{name[1][0]}</div>'
             st.markdown(
                 f"""
                 <div style="display:flex; align-items:center; margin-bottom:10px;" class="card card-hover">
-                    <img src="{icon_url}" alt="{name}" width="28" style="margin-right:10px;">
+                    {icon_html}
                     <span style="font-size:16px;">{name}</span>
                 </div>
                 """,
@@ -329,8 +298,8 @@ st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
 # Projects Section
 # =========================
 st.markdown('<a id="projects"></a>', unsafe_allow_html=True)
-st.markdown("## Projects")
-st.caption("Filter by tag and explore interactive demos")
+st.markdown("## Projects 🧑🏻‍💻")
+st.caption("Filter by tag and explore interactive demos.")
 
 
 PROJECTS = [
@@ -339,8 +308,8 @@ PROJECTS = [
         "desc": "An AI-powered travel planner that generates personalized itineraries based on user preferences.",
         "tags": ["FastAPI", "Langchain", "Groq", "Streamlit"],
         "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/Voyage.jpg?raw=true",
-        "repo": "https://github.com/anshkedia-04/Smart_Attend",
-        "demo": None
+        "repo": "https://github.com/anshkedia-04/VoyageAI-Smart-Travel-Assistant",
+        "demo": "https://voyageai-smart-travel-assistant-pkrk9xcpwhhynq4h3eylis.streamlit.app/"
     },
     {
         "title": "🧑🏻‍💻 Facemask 360",
@@ -360,7 +329,7 @@ PROJECTS = [
     },
     {
         "title": "🤖 BrewBot",
-        "desc": "Cafe FAQ Chatbot is an intelligent, open-source chatbot designed specifically for newly launched or small cafés that want a cost-effective customer support solution.",
+        "desc": "Cafe FAQ Chatbot is an intelligent, open-source chatbot designed specifically for small cafés.",
         "tags": ["Langchain","HuggingFace","Streamlit"],
         "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/BrewBot.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/BrewBot",
@@ -376,13 +345,12 @@ PROJECTS = [
     },
     {
         "title": "🔊 AirTune: Volume Controller",
-        "desc": "A deep learning project that uses computer vision to control the volume of the system with simple hand gestures.",
+        "desc": "A deep learning project that uses computer vision to control the system volume with simple hand gestures.",
         "tags": ["MediaPipe", "OpenCV", "Streamlit"],
         "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/AirTune.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/AirTune",
         "demo": None
     }
-    
 ]
 
 # Tag filter
@@ -393,28 +361,7 @@ with ft_col1:
 with ft_col2:
     search = st.text_input("Search", placeholder="Search by title or description")
 
-def show_demo(kind: str):
-    if kind == "fraud":
-        fraud_data = pd.DataFrame({"Class": ["Normal", "Fraudulent"], "Count": [284315, 492]})
-        fig = px.pie(fraud_data, names="Class", values="Count", title="Distribution of Transactions")
-        st.plotly_chart(fig, use_container_width=True)
-    elif kind == "housing":
-        import numpy as np
-        df = pd.DataFrame({"price": np.random.lognormal(mean=11.5, sigma=0.4, size=5000)})
-        fig = px.histogram(df, x="price", nbins=50, title="Sample Price Distribution")
-        fig.update_xaxes(title="Price")
-        fig.update_yaxes(title="Count")
-        st.plotly_chart(fig, use_container_width=True)
-    elif kind == "recsys":
-        sim = pd.DataFrame({
-            "Movie": ["Inception","Interstellar","Tenet","The Prestige","Memento"],
-            "Similarity": [0.95, 0.92, 0.88, 0.85, 0.83]
-        })
-        fig = px.bar(sim, x="Movie", y="Similarity", title="Top Similar Movies")
-        fig.update_yaxes(range=[0,1])
-        st.plotly_chart(fig, use_container_width=True)
-
-# Grid of projects
+# Filtered project rows
 rows = []
 for p in PROJECTS:
     if active_tag != "All" and active_tag not in p["tags"]:
@@ -423,10 +370,10 @@ for p in PROJECTS:
         continue
     rows.append(p)
 
+# Display grid
 if not rows:
     st.info("No projects match your filter. Try clearing search/tags.")
 else:
-    # show in responsive 3-column grid
     for i in range(0, len(rows), 3):
         cols = st.columns(3, gap="large")
         batch = rows[i:i+3]
@@ -434,37 +381,102 @@ else:
             with c:
                 st.markdown(
                     f"""
-                    <div class="card card-hover">
-                      <img src="{p['img']}" class="project-cover" />
+                    <div class="card card-hover" style="padding:1rem; border-radius:1rem; box-shadow:0 4px 15px rgba(0,0,0,0.15); background-color:var(--background-color);">
+                      <img src="{p['img']}" class="project-cover" style="width:100%; border-radius:0.8rem; margin-bottom:0.7rem;"/>
                       <h3 style="margin:.6rem 0 0 0;">{p['title']}</h3>
                       <p style="color:var(--muted); margin:.25rem 0 .6rem 0;">{p['desc']}</p>
-                      <div class="tags">{''.join([f'<span class="tag">{t}</span>' for t in p['tags']])}</div>
-                      <div style="display:flex; gap:.5rem; margin-top:.8rem;">
-                        {"<a class='btn btn-ghost' href='"+p["repo"]+"' target='_blank'>Repo</a>" if p["repo"] and p["repo"]!="#" else ""}
-                        {"<a class='btn btn-primary' href='#demo-"+p["demo"]+"'>Demo</a>" if p["demo"] else ""}
+                      <div class="tags" style="margin-bottom:.7rem;">
+                        {''.join([f'<span class="tag" style="display:inline-block; background:linear-gradient(135deg, #007bff, #00b4d8); color:white; padding:0.25rem 0.7rem; border-radius:0.6rem; margin:0.15rem; font-size:0.85rem; font-weight:500;">{t}</span>' for t in p['tags']])}
+                      </div>
+                      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.8rem;">
+                        <a href="{p['repo']}" target="_blank" class="btn btn-primary" style="text-decoration:none; background:#007bff; color:white; padding:0.4rem 0.9rem; border-radius:0.5rem; font-weight:500;">Repo</a>
+                        {"<a href='"+p['demo']+"' target='_blank' class='btn btn-ghost' style='text-decoration:none; background:#f5f5f5; color:#007bff; padding:0.4rem 0.9rem; border-radius:0.5rem; font-weight:500;'>Demo</a>" if p['demo'] else ""}
                       </div>
                     </div>
                     """,
                     unsafe_allow_html=True
                 )
 
-
-
 st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
 
-# =========================
-# Resume (Timeline)
-# =========================
-st.markdown("## Highlights")
-st.caption("Education, internships, and certifications")
 
-resume_items = [
+# =========================
+# Resume (Timeline - Separated into Tabs) - REVISED
+# =========================
+
+def render_timeline_item(it):
+    """Renders a single timeline item using st.markdown with unsafe_allow_html."""
+    
+    # 1. Base64 conversion
+    logo_html = ""
+    try:
+        # Check if the logo file exists
+        if os.path.exists(it["logo"]):
+            with open(it["logo"], "rb") as f:
+                logo_b64 = base64.b64encode(f.read()).decode()
+                logo_html = f'<img src="data:image/png;base64,{logo_b64}" style="width:40px;height:40px;object-fit:contain;border-radius:8px;border:1px solid rgba(255,255,255,0.2);" />'
+        else:
+            # Placeholder for missing logo
+            logo_html = '<div style="width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:gray;">N/A</div>'
+    except Exception:
+         logo_html = '<div style="width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:gray;">N/A</div>'
+
+    # 2. Render the item HTML
+    st.markdown(
+        f"""
+        <div class="timeline-item card-hover" style="display:flex; gap:1rem; align-items:center; padding:.9rem 1rem; border-radius:16px;">
+          {logo_html}
+          <div>
+            <div style="color:#86efac; font-weight:700; font-size:.85rem;">{it['when']}</div>
+            <div style="font-weight:700; margin-top:.15rem;">{it['title']}</div>
+            <div style="color:var(--muted); font-size:.9rem;">{it['where']}</div>
+            <div style="color:var(--muted); margin-top:.25rem; font-size:.9rem;">{it['detail']}</div>
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+def render_timeline(items):
+    """Renders the entire timeline structure."""
+    st.markdown('<div class="timeline">', unsafe_allow_html=True)
+    for it in items:
+        render_timeline_item(it)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+
+# Data remains the same... (Education, Internships, Certifications)
+education_items = [
     {
         "when": "2022 — Present",
         "title": "B.Tech (Final Year) — Computer Science and Engineering",
         "where": "Parul University",
-        "detail": "Coursework: ML, DL, CV, NLP, DSA, DBMS.",
+        "detail": "Coursework in: ML, DL, CV, NLP, DSA, DBMS.",
         "logo": "logos/parul.png"
+    },
+    {
+        "when": "2020 — 2022",
+        "title": "Senior Secondary Education — Science Stream",
+        "where": "Green Valley High School",
+        "detail": "Coursework in: Physics, Chemistry, Mathematics.",
+        "logo": "logos/greenValley.webp"
+    },
+    {
+        "when": "Till 2020",
+        "title": "Secondary Education",
+        "where": "Tree House High School",
+        "detail": "Completed high school with a focus on Science and Mathematics.",
+        "logo": "logos/tree_house.webp"
+    },
+]
+
+internship_items = [
+    {
+        "when": "Nov'25 - July'25",
+        "title": "AI Intern",
+        "where": "MyOnSite Healthcare Pvt. Ltd.",
+        "detail": "Not started yet.",
+        "logo": "logos/myonsite.jpg"
     },
     {
         "when": "Summer 2025",
@@ -487,7 +499,9 @@ resume_items = [
         "detail": "Hands-on experience in python, analytics and machine learning",
         "logo": "logos/skillforge.png"
     },
+]
 
+certification_items = [
     {
         "when": "2024",
         "title": "Accenture Certification",
@@ -517,39 +531,38 @@ resume_items = [
         "logo": "logos/microsoft.png"
     },
 ]
+# --- REVISED STREAMLIT DISPLAY LOGIC ---
+st.markdown("## Highlights 📜")
+st.caption("Education, internships, and certifications organized by timeline.")
 
 cL, cR = st.columns([1.3, 1])
 with cL:
-    st.markdown('<div class="timeline">', unsafe_allow_html=True)
-    for it in resume_items:
-        # Convert logo to base64 so it renders inline
-        try:
-            with open(it["logo"], "rb") as f:
-                logo_b64 = base64.b64encode(f.read()).decode()
-                logo_html = f'<img src="data:image/png;base64,{logo_b64}" style="width:40px;height:40px;object-fit:contain;border-radius:8px;border:1px solid rgba(255,255,255,0.2);" />'
-        except:
-            logo_html = '<div style="width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:gray;">N/A</div>'
+    tab1, tab2, tab3 = st.tabs(["Education", "Internships", "Certifications"])
+    
+    with tab1:
+        # 🔑 FIX: Direct Python rendering of each item inside the timeline container
+        render_timeline(education_items) 
 
-        st.markdown(
-            f"""
-            <div class="timeline-item card-hover" style="display:flex; gap:1rem; align-items:center; padding:.9rem 1rem; border-radius:16px;">
-              {logo_html}
-              <div>
-                <div style="color:#86efac; font-weight:700; font-size:.85rem;">{it['when']}</div>
-                <div style="font-weight:700; margin-top:.15rem;">{it['title']}</div>
-                <div style="color:var(--muted); font-size:.9rem;">{it['where']}</div>
-                <div style="color:var(--muted); margin-top:.25rem; font-size:.9rem;">{it['detail']}</div>
-              </div>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-    st.markdown('</div>', unsafe_allow_html=True)
+    with tab2:
+        # 🔑 FIX: Direct Python rendering of each item inside the timeline container
+        render_timeline(internship_items)
+        
+    with tab3:
+        # 🔑 FIX: Direct Python rendering of each item inside the timeline container
+        render_timeline(certification_items)
+
+# The resume download card (cR) remains the same
+# ... (Resume download code here) ...
 
 with cR:
-    # Load actual Resume.pdf from the same directory
-    with open("Resume.pdf", "rb") as pdf_file:
-        pdf_bytes = pdf_file.read()
+    # Resume PDF download (assuming 'Resume.pdf' is available)
+    try:
+        with open("Resume.pdf", "rb") as pdf_file:
+            pdf_bytes = pdf_file.read()
+            pdf_available = True
+    except FileNotFoundError:
+        pdf_bytes = b''
+        pdf_available = False
 
     st.markdown(
         """
@@ -562,6 +575,7 @@ with cR:
             color: white;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             transition: transform 0.2s ease-in-out;
+            margin-bottom: 1.5rem;
         }
         .resume-card:hover {
             transform: scale(1.03);
@@ -607,46 +621,61 @@ with cR:
         """,
         unsafe_allow_html=True
     )
+    if pdf_available:
+        st.download_button("⬇️ Download Resume", data=pdf_bytes, file_name="Resume.pdf", mime="application/pdf", use_container_width=True)
+    else:
+        st.error("Resume.pdf file not found in the current directory.")
 
-    st.download_button("⬇️ Download Resume", data=pdf_bytes, file_name="Resume.pdf", mime="application/pdf")
+
+st.markdown('<div class="hr"></div>', unsafe_allow_html=True)
 
 
 # =========================
-# Contact Section
+# Final Contact Section (Form)
 # =========================
 st.markdown('<a id="contact"></a>', unsafe_allow_html=True)
-st.markdown("## Contact")
-st.caption("Let’s build something great together.")
+st.markdown("## Get In Touch 📧")
+st.caption("Let’s build something great together. I’m open to new opportunities.")
 
 contact_left, contact_right = st.columns([1.1, 1], gap="large")
+
 with contact_left:
+    st.markdown("### Send a Message")
     with st.form("contact_form", clear_on_submit=True):
         st.markdown('<div class="card">', unsafe_allow_html=True)
-        name = st.text_input("Your Name")
-        email = st.text_input("Email")
-        msg = st.text_area("Message", height=140)
+        name = st.text_input("Your Name *")
+        email = st.text_input("Email *")
+        msg = st.text_area("Message *", height=140)
         sent = st.form_submit_button("Send Message ✉️", use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
         if sent:
             if not (name and email and msg):
-                st.warning("Please fill in all fields.")
+                st.warning("Please fill in all required fields.")
             else:
-                st.success("Thanks! Your default email app will open to send the message.")
-                # Open mailto (best effort UX via markdown link)
-                st.markdown(
-                    f"[Click here if your email didn't open automatically](mailto:anshkedia.04@gmail.com?subject=Portfolio%20Contact%20from%20{name}&body={msg}%0A%0AFrom:%20{email})"
-                )
+                # Mailto link logic on submission
+                mailto_link = f"mailto:anshkedia.04@gmail.com?subject=Portfolio%20Contact%20from%20{name}&body={msg}%0A%0AFrom:%20{email}"
+                st.success("Thanks! Your default email app will open to send the message. Check your pop-up blocker.")
+                st.markdown(f"**<a class='btn btn-ghost' href='{mailto_link}'>Click here if your email didn't open automatically</a>**", unsafe_allow_html=True)
+
 
 with contact_right:
+    st.markdown("### My Socials")
     st.markdown(
         """
         <div class="card card-hover">
-          <h3>Connect</h3>
-          <p style="color:var(--muted)">I’m active on these platforms — feel free to reach out.</p>
-          <div style="display:grid; gap:.5rem; margin-top:.5rem;">
-            <a class="btn btn-ghost" href="https://github.com/anshkedia-04" target="_blank">GitHub</a>
-            <a class="btn btn-ghost" href="https://www.linkedin.com/in/ansh-kedia-249843266/" target="_blank">LinkedIn</a>
-            <a class="btn btn-primary" href="mailto:anshkedia.04@gmail.com">Email</a>
+          <p style="color:var(--muted)">Feel free to connect with me on these platforms:</p>
+          <div style="display:grid; gap:.5rem; margin-top:.8rem;">
+            <a class="btn btn-primary" href="https://www.linkedin.com/in/ansh-kedia-249843266/" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="20" height="20">
+                LinkedIn
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/anshkedia-04" target="_blank">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20">
+                GitHub
+            </a>
+            <a class="btn btn-ghost" href="mailto:anshkedia.04@gmail.com">
+                <span style="font-size: 1.2rem;">✉️</span> Email Directly
+            </a>
           </div>
         </div>
         """,
@@ -660,10 +689,8 @@ st.write("")
 st.markdown(
     f"""
     <div class="footer" style="text-align:center; margin:2rem 0 1rem 0;">
-      © {datetime.now().year} Ansh Kedia 
+      © {datetime.now().year} Ansh Kedia • Built with Streamlit & ❤️
     </div>
     """,
     unsafe_allow_html=True
 )
-
-
