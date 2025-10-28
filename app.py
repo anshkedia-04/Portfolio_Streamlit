@@ -149,7 +149,7 @@ with col1:
         """
         <div id="typing" style="color:#9CA3AF; font-size:1.25rem; margin-top:.3rem;"></div>
         <script>
-        const roles = ["Data Scientist", "ML Engineer", "Computer Vision", "NLP & RAG", "Analytics & Dashboards"];
+        const roles = ["Data Scientist", "ML Engineer", "Computer Vision", "NLP & RAG", "Agentic Ai", "Analytics & Dashboards"];
         const el = document.getElementById('typing');
         let i = 0, j = 0, deleting = false, delay = 80, pause = 800;
 
@@ -307,7 +307,7 @@ PROJECTS = [
         "title": "VoyageAI: Travel Planner",
         "desc": "An AI-powered travel planner that generates personalized itineraries based on user preferences.",
         "tags": ["FastAPI", "Langchain", "Groq", "Streamlit"],
-        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/Voyage.jpg?raw=true",
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/Voyage_AI.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/VoyageAI-Smart-Travel-Assistant",
         "demo": "https://voyageai-smart-travel-assistant-pkrk9xcpwhhynq4h3eylis.streamlit.app/"
     },
