@@ -307,9 +307,9 @@ PROJECTS = [
         "title": "LifePulse (Currently working on it!)",
         "desc": "“An AI synthesis engine that reasons across environment signals to tell you what to do next.",
         "tags": ["FastAPI", "React", "PostgreSQL", "Reasoning Model"],
-        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/Voyage_AI.jpg?raw=true",
-        "repo": "In progress!!",
-        "demo": "In progress!!"
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/LifePulse.png?raw=true",
+        "repo": None,
+        "demo": None
     },
     {
         "title": "VoyageAI: Travel Planner",
@@ -487,13 +487,13 @@ education_items = [
 ]
 
 internship_items = [
-    {
-        "when": "Nov'25 - July'25",
-        "title": "AI Intern",
-        "where": "MyOnSite Healthcare Pvt. Ltd.",
-        "detail": "Not started yet.",
-        "logo": "logos/myonsite.jpg"
-    },
+    # {
+    #     "when": "Nov'25 - July'25",
+    #     "title": "AI Intern",
+    #     "where": "MyOnSite Healthcare Pvt. Ltd.",
+    #     "detail": "Not started yet.",
+    #     "logo": "logos/myonsite.jpg"
+    # },
     {
         "when": "Summer 2025",
         "title": "Data Science Summer Intern",
@@ -519,11 +519,25 @@ internship_items = [
 
 certification_items = [
     {
+        "when": "2025",
+        "title": "Career Essentials in Generative AI",
+        "where": "Microsfoft and LinkedIn",
+        "detail": "Microsoft Copilot, Responsible AI, Generative AI, AI for Business, Prompt Engineering",
+        "logo": "logos/microsoft.png"
+    },
+    {
+        "when": "2025",
+        "title": "Introduction to Generative AI",
+        "where": "Google Cloud",
+        "detail": "Fundamentals of Generative AI, Large Language Models, and their applications.",
+        "logo": "logos/google.png"
+    },
+    {
         "when": "2024",
-        "title": "Accenture Certification",
-        "where": "Data Analytics and Visualization Job Simulation",
-        "detail": "Hands-on experience in data cleaning, visualization, and presenting insights.",
-        "logo": "logos/accenture.png"
+        "title": "Microsoft Certification",
+        "where": "Ignite Edition Challenge",
+        "detail": "Explored cloud computing concepts, AI integration, and Microsoft tools.",
+        "logo": "logos/microsoft.png"
     },
     {
         "when": "2024",
@@ -538,13 +552,6 @@ certification_items = [
         "where": "Introduction to Data Science",
         "detail": "Gained foundational knowledge in data science concepts, tools, and techniques.",
         "logo": "logos/cisco.png"
-    },
-    {
-        "when": "2024",
-        "title": "Microsoft Certification",
-        "where": "Ignite Edition Challenge",
-        "detail": "Explored cloud computing concepts, AI integration, and Microsoft tools.",
-        "logo": "logos/microsoft.png"
     },
 ]
 # --- REVISED STREAMLIT DISPLAY LOGIC ---
