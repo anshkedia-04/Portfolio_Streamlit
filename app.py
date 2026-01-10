@@ -304,6 +304,14 @@ st.caption("Filter by tag and explore interactive demos.")
 
 PROJECTS = [
     {
+        "title": "LifePulse",
+        "desc": "“An AI synthesis engine that reasons across environment signals to tell you what to do next.",
+        "tags": ["FastAPI", "React", "PostgreSQL", "Reasoning Model"],
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/Voyage_AI.jpg?raw=true",
+        "repo": "https://github.com/anshkedia-04/VoyageAI-Smart-Travel-Assistant",
+        "demo": "https://voyageai-smart-travel-assistant-pkrk9xcpwhhynq4h3eylis.streamlit.app/"
+    },
+    {
         "title": "VoyageAI: Travel Planner",
         "desc": "An AI-powered travel planner that generates personalized itineraries based on user preferences.",
         "tags": ["FastAPI", "Langchain", "Groq", "Streamlit"],
@@ -317,7 +325,7 @@ PROJECTS = [
         "tags": ["FastAPI", "Langchain", "Groq", "Streamlit"],
         "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/MedAssist.jpg?raw=true",
         "repo": "https://github.com/anshkedia-04/VoyageAI-Smart-Travel-Assistant",
-        "demo": "https://voyageai-smart-travel-assistant-pkrk9xcpwhhynq4h3eylis.streamlit.app/"
+        "demo": None
     },
     {
         "title": "🧑🏻‍💻 Facemask 360",
