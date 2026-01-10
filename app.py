@@ -304,12 +304,12 @@ st.caption("Filter by tag and explore interactive demos.")
 
 PROJECTS = [
     {
-        "title": "LifePulse",
+        "title": "LifePulse (Currently working on it!)",
         "desc": "“An AI synthesis engine that reasons across environment signals to tell you what to do next.",
         "tags": ["FastAPI", "React", "PostgreSQL", "Reasoning Model"],
         "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/Voyage_AI.jpg?raw=true",
-        "repo": "https://github.com/anshkedia-04/VoyageAI-Smart-Travel-Assistant",
-        "demo": "https://voyageai-smart-travel-assistant-pkrk9xcpwhhynq4h3eylis.streamlit.app/"
+        "repo": "In progress!!",
+        "demo": "In progress!!"
     },
     {
         "title": "VoyageAI: Travel Planner",
