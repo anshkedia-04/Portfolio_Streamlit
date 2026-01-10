@@ -312,6 +312,14 @@ PROJECTS = [
         "demo": "https://voyageai-smart-travel-assistant-pkrk9xcpwhhynq4h3eylis.streamlit.app/"
     },
     {
+        "title": "MedAssist-XR",
+        "desc": "MedAssist XR is an AI-driven virtual healthcare assistant that helps users analyze symptoms, interpret lab reports, find nearby doctors or hospitals, and get health insights — all through a chat-based interface.",
+        "tags": ["FastAPI", "Langchain", "Groq", "Streamlit"],
+        "img": "https://github.com/anshkedia-04/Portfolio_Streamlit/blob/main/Project_images/MedAssist.jpg?raw=true",
+        "repo": "https://github.com/anshkedia-04/VoyageAI-Smart-Travel-Assistant",
+        "demo": "https://voyageai-smart-travel-assistant-pkrk9xcpwhhynq4h3eylis.streamlit.app/"
+    },
+    {
         "title": "🧑🏻‍💻 Facemask 360",
         "desc": "A comprehensive solution for marking attendance using facial recognition.",
         "tags": ["Classification", "Facenet", "OpenCV", "Streamlit"],
